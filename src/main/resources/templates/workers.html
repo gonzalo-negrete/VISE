@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+    <head>
+        <title>Empleados</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <!-- CSS -->
+        <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
+
+        <!-- JS -->
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script src="/webjars/jquery/3.4.1/jquery.min.js"></script>
+        <script src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script type="text/javascript" th:src="@{/dist/js/Payments.js}"></script>
+    </head>
+    <body>
+        <br>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <h1 th:text="#{welcome.message}"></h1>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 pull-right card">
+                    <br>
+                    <h5 th:text="#{language.change}"></h5>
+                    <select id="language" class="form-control">
+                        <option value=""></option>
+                        <option value="en" th:text="#{lang.eng}"></option>
+                        <option value="es" th:text="#{lang.es}"></option>
+                    </select>
+                    <br>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <a th:href="@{/workers/new}" class="btn btn-primary btn-sm" th:text="#{boton.nuevo}"></a>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <input id="txtEdad" type="number" name="edad" class="form-control" placeholder="Filtrar empleados por edad" required min="18" max="100">
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2">
+                    <button type="button" class="btn btn-info btn-sm pull-right" id="btnTest" th:text="#{boton.buscar}"></button>
+                </div>
+            </div>
+            <br>
+            <table class="table table-bordered" aria-describedby="tblWorkers">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col" th:text="#{th.nombre}">Nombre</th>
+                        <th scope="col" th:text="#{th.apellidos}">Apellidos</th>
+                        <th scope="col" th:text="#{th.edad}">Edad</th>
+                        <th scope="col" th:text="#{th.acciones}">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tWorkers">
+                    <tr th:each="worker : ${lstWorkers}">
+                        <td th:text="${worker.nombre}">Nombre</td>
+                        <td th:text="${worker.apellidos}">Apellidos</td>
+                        <td th:text="${worker.edad}">Edad</td>
+                        <td>
+                            <a th:href="@{/workers/update/{id}(id=${worker.id})}" class="btn btn-info">Editar</a>
+                            <a th:href="@{/workers/{id}(id=${worker.id})}" class="btn btn-danger">Eliminar</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr>
+        </div>
+        <br>
+        <div class="container">
+            <h4 th:text="#{titulo.pagos}"></h4>
+            <div class="row"> 
+                <div class="col-lg-3 col-md-3 col-sm-3">
+                    <input type="number" class="form-control" name="concepto" id="txtConcepto" placeholder="Agrega un monto" required>
+                </div>
+                <br>
+                <div class="col-lg-3 col-md-3 col-sm-3">
+                    <button type="button" class="btn btn-primary btn-block" id="btnBuscarPagos" th:text="#{boton.buscarpagos}"></button>
+                </div>
+                <br>
+                <div class="col-lg-6 col-md-6 col-sm-6" id="divPagos">
+
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

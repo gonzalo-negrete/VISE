@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+    <head>
+        <title>Empleados</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+                    <h1 class="text-center">Registro de trabajador</h1>
+                    <div class="card-body">
+                        <form th:action="@{/workers}" th:object="${worker}" method="POST">
+                            <div class="form-group">
+                                <label>Nombre: </label>
+                                <input type="text" name="nombre" th:field="*{nombre}" class="form-control" placeholder="Escribe el nombre" required>
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <label>Apellidos </label>
+                                <input type="text" name="apellidos" th:field="*{apellidos}" class="form-control" placeholder="Escribe el/los apellidos" required>
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <label>Edad </label>
+                                <input type="number" name="edad" th:field="*{edad}" class="form-control" placeholder="Escribe la edad" required min="18" max="100">
+                            </div>
+                            <br>
+                            <div class="box-footer text-center">
+                                <button class="btn btn-success">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
