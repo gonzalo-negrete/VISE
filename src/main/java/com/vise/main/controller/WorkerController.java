@@ -23,7 +23,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class WorkerController {
 
     private static final Logger logger = LogManager.getLogger(WorkerController.class.getName());
-
+    private String index = "redirect:/workers";
+    
     @Autowired
     private WorkerService service;
 
@@ -55,7 +56,7 @@ public class WorkerController {
         } catch (Exception e) {
             logger.error(e);
         }
-        return "/workers";
+        return index;
     }
 
     @GetMapping("/workers/update/{id}")
@@ -81,7 +82,7 @@ public class WorkerController {
         } catch (Exception e) {
             logger.error(e);
         }
-        return "redirect:/workers";
+        return index;
     }
 
     @GetMapping("/workers/{id}")
@@ -91,7 +92,7 @@ public class WorkerController {
         } catch (Exception e) {
             logger.error(e);
         }
-        return "redirect:/workers";
+        return index;
     }
 
     @RequestMapping("/workers/age/{edad}")
